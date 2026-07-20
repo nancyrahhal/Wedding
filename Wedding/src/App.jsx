@@ -287,7 +287,7 @@ function App() {
         ].join('\n')
 
     window.open(
-      `https://wa.me/96181991004?text=${encodeURIComponent(message)}`,
+      `https://wa.me/96178812322?text=${encodeURIComponent(message)}`,
       '_blank',
       'noopener,noreferrer',
     )
