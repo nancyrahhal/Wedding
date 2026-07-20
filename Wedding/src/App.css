@@ -392,11 +392,11 @@
   width: 238px;
 }
 .rsvp-page-viewport {
-  min-height: 100svh;
+  min-height: 0;
   background: #dfe2e1;
 }
 .rsvp-page-viewport:focus-within {
-  margin-bottom: 55svh;
+  margin-bottom: 0;
 }
 .rsvp-page-canvas { background: #dfe2e1; }
 .rsvp-background-position,
@@ -525,7 +525,7 @@ select.rsvp-field option { color: #4a2917; }
   width: 238px;
 }
 .love-story-viewport {
-  min-height: 100svh;
+  min-height: 0;
   background: #dfe2e1;
 }
 .love-story-canvas { background: #dfe2e1; }
@@ -582,7 +582,7 @@ select.rsvp-field option { color: #4a2917; }
   width: 238px;
 }
 .final-slide-viewport {
-  min-height: 100svh;
+  min-height: 0;
   background: #deddd5;
 }
 .final-slide-canvas {
@@ -704,7 +704,7 @@ select.rsvp-field option { color: #4a2917; }
   box-shadow: none;
   cursor: pointer;
   transition: transform .2s ease, background-color .2s ease;
-  animation: music-arrival .7s 1.7s ease-out both;
+  animation: music-arrival .32s ease-out both;
   -webkit-tap-highlight-color: transparent;
 }
 .invitation.view--details .music-toggle {
@@ -717,6 +717,12 @@ select.rsvp-field option { color: #4a2917; }
   z-index: 100;
   left: 16px;
   bottom: max(20px, env(safe-area-inset-bottom));
+}
+.rsvp-page-viewport .music-toggle--page,
+.love-story-viewport .music-toggle--page,
+.final-slide-viewport .music-toggle--page {
+  /* The logo on these artboards is centred higher than on page two. */
+  bottom: max(calc(8.4% - 24px), env(safe-area-inset-bottom));
 }
 .music-toggle::before,
 .music-toggle::after {
