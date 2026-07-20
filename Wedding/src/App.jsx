@@ -86,6 +86,7 @@ function App() {
   const [countdown, setCountdown] = useState(getCountdown)
   const audioRef = useRef(null)
   const resumeMusicOnReturnRef = useRef(false)
+  const envelopeButtonRef = useRef(null)
   const pageTwoRef = useRef(null)
   const pageThreeRef = useRef(null)
   const lovePhotoRef = useRef(null)
@@ -255,6 +256,16 @@ function App() {
     setIsOpening(true)
   }
 
+  useEffect(() => {
+    if (view !== 'home' || isOpening) return undefined
+
+    const autoOpenTimer = window.setTimeout(() => {
+      envelopeButtonRef.current?.click()
+    }, 5000)
+
+    return () => window.clearTimeout(autoOpenTimer)
+  }, [view, isOpening])
+
   const openLanguageInvitation = (language) => {
     setInvitationLanguage(language)
     pageThreeAssetsReadyRef.current.finally(() => {
@@ -308,6 +319,7 @@ function App() {
           <p className="welcome-line">To our beloved family</p>
 
           <button
+            ref={envelopeButtonRef}
             className={`envelope${isOpening ? ' is-opening' : ''}`}
             type="button"
             onClick={openInvitation}
