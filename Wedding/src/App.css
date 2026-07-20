@@ -136,8 +136,8 @@
 .envelope:disabled { cursor: default; }
 .envelope.is-opening {
   transform-origin: 50% 50%;
-  will-change: transform, opacity;
-  animation: envelope-open-reveal 2.4s cubic-bezier(.22,1,.36,1) both;
+  will-change: transform, opacity, filter;
+  animation: envelope-open-reveal 1.5s cubic-bezier(.4,0,.18,1) both;
   pointer-events: none;
 }
 .envelope.is-opening img,
@@ -782,11 +782,8 @@ select.rsvp-field option { color: #4a2917; }
 }
 @keyframes envelope-float { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,-7px) rotate(.6deg); } }
 @keyframes envelope-open-reveal {
-  0% { transform: translateX(-50%) scale(1); opacity: 1; filter: drop-shadow(0 12px 13px rgba(20,22,15,.25)); }
-  20% { transform: translateX(-50%) scale(1.04); opacity: 1; }
-  45% { transform: translateX(-50%) scale(1.15); opacity: .96; }
-  74% { transform: translateX(-50%) scale(2.4) rotate(-1.5deg); opacity: .84; }
-  100% { transform: translateX(-50%) scale(4.8) rotate(-2.5deg); opacity: 0; }
+  0% { transform: translate3d(-50%,0,0) scale(1); opacity: 1; filter: drop-shadow(0 12px 13px rgba(20,22,15,.25)); }
+  100% { transform: translate3d(-50%,0,0) scale(4.8) rotate(-2deg); opacity: 0; filter: drop-shadow(0 2px 3px rgba(20,22,15,0)); }
 }
 @keyframes envelope-tap-cue {
   0%, 48%, 100% { transform: scale(1) rotate(0); }

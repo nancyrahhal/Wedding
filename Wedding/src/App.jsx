@@ -85,6 +85,7 @@ function App() {
   const [isLovePhotoVisible, setIsLovePhotoVisible] = useState(false)
   const [countdown, setCountdown] = useState(getCountdown)
   const audioRef = useRef(null)
+  const resumeMusicOnReturnRef = useRef(false)
   const pageTwoRef = useRef(null)
   const pageThreeRef = useRef(null)
   const lovePhotoRef = useRef(null)
@@ -103,6 +104,44 @@ function App() {
     const timer = window.setInterval(updateCountdown, 1000)
     return () => window.clearInterval(timer)
   }, [])
+
+  useEffect(() => {
+    const pauseBackgroundMusic = () => {
+      const audio = audioRef.current
+      if (!audio) return
+
+      resumeMusicOnReturnRef.current = !audio.paused && !audio.muted && !isMuted
+      audio.pause()
+    }
+
+    const resumeBackgroundMusic = () => {
+      const audio = audioRef.current
+      if (
+        !audio
+        || document.visibilityState === 'hidden'
+        || !resumeMusicOnReturnRef.current
+        || isMuted
+      ) return
+
+      resumeMusicOnReturnRef.current = false
+      audio.play().catch(() => {})
+    }
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') pauseBackgroundMusic()
+      else resumeBackgroundMusic()
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    window.addEventListener('pagehide', pauseBackgroundMusic)
+    window.addEventListener('pageshow', resumeBackgroundMusic)
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      window.removeEventListener('pagehide', pauseBackgroundMusic)
+      window.removeEventListener('pageshow', resumeBackgroundMusic)
+    }
+  }, [isMuted])
 
   useEffect(() => {
     if (view !== 'invitation' || !lovePhotoRef.current) return undefined
