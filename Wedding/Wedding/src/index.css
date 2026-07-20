@@ -1,0 +1,13 @@
+:root {
+  font-family: Arial, sans-serif;
+  color: #3f4c0e;
+  background: #eceae3;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
+html, body, #root { width: 100%; min-height: 100%; margin: 0; }
+html { scroll-behavior: smooth; }
+body { min-width: 280px; min-height: 100svh; }
+button, img { user-select: none; -webkit-user-drag: none; }
