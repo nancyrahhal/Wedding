@@ -36,10 +36,10 @@ const PAGE_THREE_ASSETS = [
   'card-zoomed-english.webp',
   'flower1-front.webp',
   'flower2-front.webp',
-  'details-frame-arabic.png',
-  'details-frame-english.png',
-  'location-button-arabic.png',
-  'location-button-english.png',
+  'details-frame-arabic.webp',
+  'details-frame-english.webp',
+  'location-button-arabic.webp',
+  'location-button-english.webp',
   'wedding-logo-optimized.png',
 ]
 
@@ -541,7 +541,7 @@ function App() {
               <div className="details-frame-position">
                 <div className="design-animation-layer">
                   <img
-                    src={asset(`details-frame-${invitationLanguage}.png`)}
+                    src={asset(`details-frame-${invitationLanguage}.webp`)}
                     alt={`${invitationLanguage} wedding details`}
                   />
                 </div>
@@ -556,7 +556,7 @@ function App() {
               >
                 <span className="design-animation-layer">
                   <img
-                    src={asset(`location-button-${invitationLanguage}.png`)}
+                    src={asset(`location-button-${invitationLanguage}.webp`)}
                     alt="Open Barraj Garden location"
                   />
                 </span>
