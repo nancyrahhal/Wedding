@@ -716,9 +716,9 @@ function App() {
                   className="rsvp-field rsvp-attendees-field"
                   type="text"
                   name="attendees"
-                  value="1"
+                  value="6"
                   readOnly
-                  aria-label={invitationLanguage === 'arabic' ? 'عدد الحضور: 1' : 'Number of attendees: 1'}
+                  aria-label={invitationLanguage === 'arabic' ? 'عدد الحضور: 6' : 'Number of attendees: 6'}
                 />
 
                 <textarea
