@@ -261,7 +261,7 @@ function App() {
 
     const autoOpenTimer = window.setTimeout(() => {
       envelopeButtonRef.current?.click()
-    }, 5000)
+    }, 8000)
 
     return () => window.clearTimeout(autoOpenTimer)
   }, [view, isOpening])
@@ -518,11 +518,8 @@ function App() {
             </button>
 
             <div className="page-three-scroll-cue" aria-hidden="true">
-              <span>
-                {invitationLanguage === 'arabic'
-                  ? '\u0627\u0646\u0632\u0644 \u0644\u0627\u0643\u062a\u0634\u0627\u0641 \u0627\u0644\u0645\u0632\u064a\u062f'
-                  : 'Scroll to discover more'}
-              </span>
+              <i />
+              <i />
               <i />
             </div>
           </div>
@@ -549,10 +546,10 @@ function App() {
 
               <a
                 className="location-button-position"
-                href="https://www.google.com/maps/search/?api=1&query=Barraj+Garden"
+                href="https://www.google.com/maps/place/Pleine+Nature/@33.8644375,35.5637322,17z/data=!3m1!4b1!4m6!3m5!1s0x151f3d7df6109521:0xf35c713fa9df89e1!8m2!3d33.8644375!4d35.5663125!16s%2Fg%2F11h0t6685?entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Open Barraj Garden location in Google Maps"
+                aria-label="Open Pleine Nature location in Google Maps"
               >
                 <span className="design-animation-layer">
                   <img
@@ -563,103 +560,6 @@ function App() {
               </a>
 
               <div className="details-logo-position">
-                <div className="design-animation-layer">
-                  <img src={asset('wedding-logo-optimized.png')} alt="Ibrahim and Zahraa monogram" />
-                </div>
-              </div>
-            </div>
-
-            <button
-              className={`music-toggle music-toggle--page${isMuted ? ' is-muted' : ''}`}
-              type="button"
-              onClick={toggleMusic}
-              aria-label={isMuted ? 'Unmute music' : 'Mute music'}
-              aria-pressed={isMuted}
-            >
-              <img src={asset('music-icon-optimized.png')} alt="" aria-hidden="true" />
-              {isMuted && <span className="music-toggle__slash" aria-hidden="true" />}
-            </button>
-          </div>
-
-          <div
-            className="canvas-viewport rsvp-page-viewport"
-            style={{
-              width: REFERENCE_WIDTH * canvasScale,
-              height: REFERENCE_HEIGHT * canvasScale,
-            }}
-          >
-            <div
-              className={`invitation-canvas rsvp-page-canvas rsvp-page-canvas--${invitationLanguage}`}
-              style={{ transform: `scale(${canvasScale})` }}
-            >
-              <div className="rsvp-background-position" aria-hidden="true">
-                <img src={asset('background-rsvp-optimized.jpg')} alt="" loading="lazy" decoding="async" />
-              </div>
-
-              <div className="rsvp-frame-position" aria-hidden="true">
-                <div className="design-animation-layer">
-                  <img src={asset(`rsvp-frame-${invitationLanguage}-optimized.png`)} alt="" loading="lazy" decoding="async" />
-                </div>
-              </div>
-
-              <form
-                className="rsvp-form"
-                onSubmit={submitRsvp}
-                dir={invitationLanguage === 'arabic' ? 'rtl' : 'ltr'}
-              >
-                <select
-                  className="rsvp-field rsvp-attendees-field"
-                  name="attendees"
-                  required
-                  defaultValue=""
-                  aria-label={invitationLanguage === 'arabic' ? 'عدد الأشخاص الحاضرين' : 'Number of attendees'}
-                >
-                  <option value="" disabled>
-                    {invitationLanguage === 'arabic' ? 'اختر العدد' : 'Choose'}
-                  </option>
-                  {[1, 2, 3, 4, 5].map((number) => (
-                    <option value={number} key={number}>{number}</option>
-                  ))}
-                </select>
-
-                <textarea
-                  className="rsvp-field rsvp-names-field"
-                  name="attendee-names"
-                  required
-                  placeholder="Example: Ahmad Annan, Rania Rahhal,..."
-                  aria-label={invitationLanguage === 'arabic' ? 'الأسماء الكاملة لجميع الحاضرين' : 'Full names of all attendees'}
-                />
-
-                <input
-                  className="rsvp-field rsvp-song-field"
-                  type="text"
-                  name="song-request"
-                  placeholder={invitationLanguage === 'arabic' ? 'اغنيتك المفضلة' : 'your fav dance floor song..'}
-                  aria-label={invitationLanguage === 'arabic' ? 'أغنية مقترحة' : 'Optional song request'}
-                />
-
-                <button
-                  className="rsvp-submit-position"
-                  type="submit"
-                  disabled={rsvpStatus === 'submitting'}
-                  aria-label={invitationLanguage === 'arabic' ? 'إرسال تأكيد الحضور' : 'Submit RSVP'}
-                >
-                  <span className="design-animation-layer">
-                    <img src={asset(`rsvp-submit-${invitationLanguage}-optimized.png`)} alt="" loading="lazy" decoding="async" />
-                  </span>
-                </button>
-
-                <p className={`rsvp-status rsvp-status--${rsvpStatus}`} aria-live="polite">
-                  {rsvpStatus === 'success' && (
-                    invitationLanguage === 'arabic' ? 'تم فتح واتساب، يرجى الضغط على إرسال' : 'WhatsApp opened. Please tap Send.'
-                  )}
-                  {rsvpStatus === 'error' && (
-                    invitationLanguage === 'arabic' ? 'يرجى السماح بفتح واتساب والمحاولة مجددًا' : 'Please allow WhatsApp to open and try again.'
-                  )}
-                </p>
-              </form>
-
-              <div className="rsvp-logo-position">
                 <div className="design-animation-layer">
                   <img src={asset('wedding-logo-optimized.png')} alt="Ibrahim and Zahraa monogram" />
                 </div>
@@ -733,18 +633,18 @@ function App() {
           </div>
 
           <div
-            className="canvas-viewport final-slide-viewport"
+            className="canvas-viewport gift-page-viewport"
             style={{
               width: REFERENCE_WIDTH * canvasScale,
               height: REFERENCE_HEIGHT * canvasScale,
             }}
           >
             <div
-              className="invitation-canvas final-slide-canvas"
+              className="invitation-canvas gift-page-canvas"
               style={{ transform: `scale(${canvasScale})` }}
             >
               <img
-                className="final-slide-artwork"
+                className="gift-page-artwork"
                 src={asset(`last-page-${invitationLanguage}-optimized.webp`)}
                 alt={invitationLanguage === 'arabic'
                   ? 'حتى نلتقي على موعد العمر — رسالة من زهراء وإبراهيم'
@@ -786,6 +686,96 @@ function App() {
             </button>
           </div>
 
+          <div
+            className="canvas-viewport rsvp-page-viewport"
+            style={{
+              width: REFERENCE_WIDTH * canvasScale,
+              height: REFERENCE_HEIGHT * canvasScale,
+            }}
+          >
+            <div
+              className={`invitation-canvas rsvp-page-canvas rsvp-page-canvas--${invitationLanguage}`}
+              style={{ transform: `scale(${canvasScale})` }}
+            >
+              <div className="rsvp-background-position" aria-hidden="true">
+                <img src={asset('background-rsvp-optimized.jpg')} alt="" loading="lazy" decoding="async" />
+              </div>
+
+              <div className="rsvp-frame-position" aria-hidden="true">
+                <div className="design-animation-layer">
+                  <img src={asset(`rsvp-frame-${invitationLanguage}-optimized.webp`)} alt="" loading="lazy" decoding="async" />
+                </div>
+              </div>
+
+              <form
+                className="rsvp-form"
+                onSubmit={submitRsvp}
+                dir={invitationLanguage === 'arabic' ? 'rtl' : 'ltr'}
+              >
+                <input
+                  className="rsvp-field rsvp-attendees-field"
+                  type="text"
+                  name="attendees"
+                  value="1"
+                  readOnly
+                  aria-label={invitationLanguage === 'arabic' ? 'عدد الحضور: 1' : 'Number of attendees: 1'}
+                />
+
+                <textarea
+                  className="rsvp-field rsvp-names-field"
+                  name="attendee-names"
+                  required
+                  placeholder="Example: Ahmad Annan, Rania Rahhal,..."
+                  aria-label={invitationLanguage === 'arabic' ? 'الأسماء الكاملة لجميع الحاضرين' : 'Full names of all attendees'}
+                />
+
+                <input
+                  className="rsvp-field rsvp-song-field"
+                  type="text"
+                  name="song-request"
+                  placeholder={invitationLanguage === 'arabic' ? 'اغنيتك المفضلة' : 'your fav dance floor song..'}
+                  aria-label={invitationLanguage === 'arabic' ? 'أغنية مقترحة' : 'Optional song request'}
+                />
+
+                <button
+                  className="rsvp-submit-position"
+                  type="submit"
+                  disabled={rsvpStatus === 'submitting'}
+                  aria-label={invitationLanguage === 'arabic' ? 'إرسال تأكيد الحضور' : 'Submit RSVP'}
+                >
+                  <span className="design-animation-layer">
+                    <img src={asset(`rsvp-submit-${invitationLanguage}-optimized.png`)} alt="" loading="lazy" decoding="async" />
+                  </span>
+                </button>
+
+                <p className={`rsvp-status rsvp-status--${rsvpStatus}`} aria-live="polite">
+                  {rsvpStatus === 'success' && (
+                    invitationLanguage === 'arabic' ? 'تم فتح واتساب، يرجى الضغط على إرسال' : 'WhatsApp opened. Please tap Send.'
+                  )}
+                  {rsvpStatus === 'error' && (
+                    invitationLanguage === 'arabic' ? 'يرجى السماح بفتح واتساب والمحاولة مجددًا' : 'Please allow WhatsApp to open and try again.'
+                  )}
+                </p>
+              </form>
+
+              <div className="rsvp-logo-position">
+                <div className="design-animation-layer">
+                  <img src={asset('wedding-logo-optimized.png')} alt="Ibrahim and Zahraa monogram" />
+                </div>
+              </div>
+            </div>
+
+            <button
+              className={`music-toggle music-toggle--page${isMuted ? ' is-muted' : ''}`}
+              type="button"
+              onClick={toggleMusic}
+              aria-label={isMuted ? 'Unmute music' : 'Mute music'}
+              aria-pressed={isMuted}
+            >
+              <img src={asset('music-icon-optimized.png')} alt="" aria-hidden="true" />
+              {isMuted && <span className="music-toggle__slash" aria-hidden="true" />}
+            </button>
+          </div>
         </section>
       )}
 

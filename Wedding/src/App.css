@@ -157,9 +157,9 @@
 .details-stage,
 .page-three-slide,
 .details-page-viewport,
-.rsvp-page-viewport,
 .love-story-viewport,
-.final-slide-viewport {
+.gift-page-viewport,
+.rsvp-page-viewport {
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
@@ -280,39 +280,44 @@
 }
 .logo-position {
   position: absolute;
-  top: 1715px;
-  left: 421px;
-  width: 238px;
+  top: 1739px;
+  left: 445px;
+  width: 190px;
 }
 .page-three-canvas .logo-position { z-index: 10; }
 .page-three-canvas { background: #deddd5; }
 .page-three-scroll-cue {
   position: absolute;
   z-index: 11;
-  right: 16px;
+  right: 28px;
   bottom: max(20px, env(safe-area-inset-bottom));
-  display: grid;
-  justify-items: center;
-  gap: 7px;
-  width: max-content;
+  display: flex;
+  width: 34px;
+  align-items: center;
+  flex-direction: column;
+  gap: 0;
   margin: 0;
   color: var(--olive);
-  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-  font-size: 18px;
-  line-height: 1;
-  letter-spacing: .025em;
-  opacity: .82;
+  opacity: 1;
   transition: opacity .45s ease, visibility .45s ease;
   pointer-events: none;
 }
 .page-three-scroll-cue i {
   display: block;
-  width: 11px;
-  height: 11px;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
+  width: 19px;
+  height: 19px;
+  margin-top: -4px;
+  border-right: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  border-radius: 1px;
   transform: rotate(45deg);
-  animation: scroll-cue-drift 1.65s ease-in-out infinite;
+  animation: scroll-cue-drift 1.25s ease-in-out infinite;
+}
+.page-three-scroll-cue i:nth-child(2) {
+  animation-delay: .16s;
+}
+.page-three-scroll-cue i:nth-child(3) {
+  animation-delay: .32s;
 }
 .page-three-background-position,
 .page-three-envelope-position,
@@ -387,9 +392,9 @@
 }
 .details-logo-position {
   z-index: 2;
-  top: 1640px;
-  left: 421px;
-  width: 238px;
+  top: 1664px;
+  left: 445px;
+  width: 190px;
 }
 .rsvp-page-viewport {
   min-height: 0;
@@ -471,13 +476,26 @@ select.rsvp-field option { color: #4a2917; }
   top: 537px;
   height: 145px;
 }
+.rsvp-attendees-field[readonly] {
+  cursor: default;
+  text-align: center;
+  font-family: 'Canva Sans', 'Avenir Next', Arial, sans-serif;
+  font-size: 42px;
+  font-weight: 600;
+  color: var(--olive);
+  font-variant-numeric: tabular-nums;
+}
+.rsvp-attendees-field[readonly]:focus {
+  background: transparent;
+  box-shadow: none;
+}
 .rsvp-names-field {
-  top: 786px;
-  height: 263px;
-  padding-top: 48px;
+  top: 768px;
+  height: 217px;
+  padding-top: 40px;
 }
 .rsvp-song-field {
-  top: 1166px;
+  top: 1103px;
   height: 144px;
 }
 .rsvp-submit-position {
@@ -520,9 +538,9 @@ select.rsvp-field option { color: #4a2917; }
 .rsvp-status--error { color: #713a2b; }
 .rsvp-logo-position {
   z-index: 2;
-  top: 1640px;
-  left: 421px;
-  width: 238px;
+  top: 1664px;
+  left: 445px;
+  width: 190px;
 }
 .love-story-viewport {
   min-height: 0;
@@ -577,19 +595,19 @@ select.rsvp-field option { color: #4a2917; }
 }
 .love-story-logo-position {
   z-index: 2;
-  top: 1640px;
-  left: 421px;
-  width: 238px;
+  top: 1664px;
+  left: 445px;
+  width: 190px;
 }
-.final-slide-viewport {
+.gift-page-viewport {
   min-height: 0;
   background: #deddd5;
 }
-.final-slide-canvas {
+.gift-page-canvas {
   overflow: hidden;
   background: #deddd5;
 }
-.final-slide-artwork {
+.gift-page-artwork {
   position: absolute;
   z-index: 0;
   inset: 0;
@@ -677,7 +695,7 @@ select.rsvp-field option { color: #4a2917; }
   position: absolute;
   left: 50%;
   bottom: 4.15%;
-  width: 23.8%;
+  width: 19%;
   height: auto;
   transform: translateX(-50%);
   filter: drop-shadow(0 2px 5px rgba(244,243,225,.28));
@@ -718,9 +736,9 @@ select.rsvp-field option { color: #4a2917; }
   left: 16px;
   bottom: max(20px, env(safe-area-inset-bottom));
 }
-.rsvp-page-viewport .music-toggle--page,
 .love-story-viewport .music-toggle--page,
-.final-slide-viewport .music-toggle--page {
+.gift-page-viewport .music-toggle--page,
+.rsvp-page-viewport .music-toggle--page {
   /* The logo on these artboards is centred higher than on page two. */
   bottom: max(calc(8.4% - 24px), env(safe-area-inset-bottom));
 }
@@ -848,8 +866,8 @@ select.rsvp-field option { color: #4a2917; }
   }
 }
 @keyframes scroll-cue-drift {
-  0%, 100% { transform: translateY(0) rotate(45deg); opacity: .5; }
-  50% { transform: translateY(7px) rotate(45deg); opacity: 1; }
+  0%, 100% { transform: translateY(-3px) rotate(45deg); opacity: .22; }
+  45% { transform: translateY(5px) rotate(45deg); opacity: 1; }
 }
 @keyframes love-story-photo-reveal {
   0% {
