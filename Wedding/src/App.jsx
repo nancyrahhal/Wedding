@@ -38,8 +38,6 @@ const PAGE_THREE_ASSETS = [
   'flower2-front.webp',
   'details-frame-arabic.webp',
   'details-frame-english.webp',
-  'location-button-arabic.webp',
-  'location-button-english.webp',
   'wedding-logo-optimized.png',
 ]
 
@@ -543,21 +541,6 @@ function App() {
                   />
                 </div>
               </div>
-
-              <a
-                className="location-button-position"
-                href="https://www.google.com/maps/place/Pleine+Nature/@33.8644375,35.5637322,17z/data=!3m1!4b1!4m6!3m5!1s0x151f3d7df6109521:0xf35c713fa9df89e1!8m2!3d33.8644375!4d35.5663125!16s%2Fg%2F11h0t6685?entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Open Pleine Nature location in Google Maps"
-              >
-                <span className="design-animation-layer">
-                  <img
-                    src={asset(`location-button-${invitationLanguage}.webp`)}
-                    alt="Open Barraj Garden location"
-                  />
-                </span>
-              </a>
 
               <div className="details-logo-position">
                 <div className="design-animation-layer">

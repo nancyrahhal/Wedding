@@ -363,7 +363,6 @@
 .details-page-viewport { margin-top: 0; }
 .details-page-canvas { background: #dfe2e1; }
 .details-frame-position,
-.location-button-position,
 .details-logo-position {
   position: absolute;
 }
@@ -372,23 +371,6 @@
   top: 110px;
   left: 46px;
   width: 988px;
-}
-.location-button-position {
-  z-index: 2;
-  top: 1355px;
-  left: 188px;
-  display: block;
-  width: 704px;
-  color: transparent;
-  -webkit-tap-highlight-color: transparent;
-}
-.location-button-position .design-animation-layer {
-  transform-origin: 50% 50%;
-  animation: language-button-breathe 2.8s ease-in-out infinite;
-}
-.location-button-position:focus-visible {
-  outline: 5px solid var(--olive);
-  outline-offset: 8px;
 }
 .details-logo-position {
   z-index: 2;
