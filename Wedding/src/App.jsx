@@ -708,7 +708,11 @@ function App() {
                   className="rsvp-field rsvp-names-field"
                   name="attendee-names"
                   required
-                  placeholder="Example: Ahmad Annan, Rania Rahhal,..."
+                  placeholder={
+                    invitationLanguage === 'arabic'
+                      ? '(مثال: أحمد محمد\nسارة محمد\nحتى ضيفين مدعوين.)'
+                      : '(e.g. John Smith\nJane Smith\nup to 2 invited guests.)'
+                  }
                   aria-label={invitationLanguage === 'arabic' ? 'الأسماء الكاملة لجميع الحاضرين' : 'Full names of all attendees'}
                 />
 
