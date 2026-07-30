@@ -598,11 +598,11 @@ select.rsvp-field option { color: #4a2917; }
 }
 .gift-page-viewport {
   min-height: 0;
-  background: #deddd5;
+  background: #dedbd0;
 }
 .gift-page-canvas {
   overflow: hidden;
-  background: #deddd5;
+  background: #dedbd0;
 }
 .gift-page-artwork {
   position: absolute;
@@ -616,24 +616,20 @@ select.rsvp-field option { color: #4a2917; }
 .wedding-countdown {
   position: absolute;
   z-index: 2;
-  top: 420px;
-  left: 100px;
-  width: 880px;
-  color: #4d5d18;
+  top: 408px;
+  left: 64px;
+  width: 952px;
+  padding: 28px 54px;
+  color: #4d5725;
+  background: transparent;
   text-align: center;
-  filter: drop-shadow(0 6px 12px rgba(58, 60, 34, .12));
-}
-.wedding-countdown__date {
-  margin: 0 0 34px;
-  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-  font-size: 31px;
-  font-weight: 600;
-  letter-spacing: 6px;
+  filter: drop-shadow(0 5px 10px rgba(58, 60, 34, .1));
 }
 .wedding-countdown__units {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+  gap: 20px;
+  direction: ltr;
 }
 .wedding-countdown__unit {
   display: flex;
@@ -641,35 +637,74 @@ select.rsvp-field option { color: #4a2917; }
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border: 2px solid rgba(77, 93, 24, .48);
-  border-radius: 28px;
-  background: rgba(244, 241, 225, .6);
-  box-shadow: inset 0 0 0 7px rgba(255, 255, 255, .18), 0 8px 24px rgba(66, 65, 43, .1);
-  backdrop-filter: blur(3px);
+  border: 2px solid rgba(77, 87, 37, .36);
+  border-radius: 22px;
+  background: rgba(244, 241, 225, .72);
+  box-shadow: inset 0 0 0 5px rgba(255, 255, 255, .18), 0 6px 18px rgba(66, 65, 43, .08);
+  backdrop-filter: blur(2px);
 }
 .wedding-countdown__number {
   font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-  font-size: 70px;
-  font-weight: 600;
+  font-size: 62px;
+  font-weight: 400;
   font-variant-numeric: tabular-nums;
   line-height: .95;
 }
 .wedding-countdown__label {
-  margin-top: 13px;
+  margin-top: 9px;
   font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-  font-size: 23px;
-  font-weight: 600;
-  letter-spacing: 3px;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2.5px;
   line-height: 1;
   text-transform: uppercase;
 }
-.wedding-countdown.is-arabic .wedding-countdown__date,
 .wedding-countdown.is-arabic .wedding-countdown__label {
   letter-spacing: 0;
   text-transform: none;
 }
 .wedding-countdown.is-arabic .wedding-countdown__label {
-  font-size: 26px;
+  font-size: 28px;
+}
+.venue-photo,
+.venue-location-button,
+.venue-logo-position {
+  position: absolute;
+}
+.venue-photo {
+  z-index: 2;
+  top: 690px;
+  left: 18px;
+  width: 1044px;
+  height: 743px;
+  object-fit: cover;
+}
+.venue-location-button {
+  z-index: 3;
+  top: 1502px;
+  left: 188px;
+  display: block;
+  width: 704px;
+  -webkit-tap-highlight-color: transparent;
+}
+.venue-location-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.venue-location-button:focus-visible {
+  border-radius: 8px;
+  outline: 3px solid rgba(77, 87, 37, .5);
+  outline-offset: 7px;
+}
+.venue-location-button:active {
+  transform: scale(.985);
+}
+.venue-logo-position {
+  z-index: 3;
+  top: 1664px;
+  left: 445px;
+  width: 190px;
 }
 .welcome-line {
   position: absolute;
