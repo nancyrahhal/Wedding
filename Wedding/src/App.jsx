@@ -710,8 +710,8 @@ function App() {
                   required
                   placeholder={
                     invitationLanguage === 'arabic'
-                      ? '(مثال: أحمد محمد\nسارة محمد\nكريم محمد\nحتى 3 ضيوف مدعوين.)'
-                      : '(e.g. John Smith\nJane Smith\nJack Smith\nup to 3 invited guests.)'
+                      ? '(مثال: إبراهيم قماطي\nزهراء العنان  \nيمكنك اضافة ثلاثة أسماء)'
+                      : '(e.g. Ibrahim Komati\nZahraa Alannan\nup to 3 invited guests.)'
                   }
                   aria-label={invitationLanguage === 'arabic' ? 'الأسماء الكاملة لجميع الحاضرين' : 'Full names of all attendees'}
                 />
