@@ -418,8 +418,8 @@
   inset: 0;
 }
 .rsvp-field {
-  left: 140px;
-  width: 800px;
+  left: 145px;
+  width: 790px;
   margin: 0;
   padding: 22px 45px;
   border: 0;
@@ -436,7 +436,7 @@
 }
 .rsvp-field:focus {
   background: rgba(255,255,255,.2);
-  box-shadow: inset 0 0 0 5px rgba(63,76,14,.4);
+  box-shadow: inset 0 0 0 3px rgba(63,76,14,.12);
 }
 .rsvp-field::placeholder {
   color: rgba(74,41,23,.58);
@@ -455,16 +455,17 @@ select.rsvp-field:invalid {
 }
 select.rsvp-field option { color: #4a2917; }
 .rsvp-attendees-field {
-  top: 537px;
-  height: 145px;
+  top: 538px;
+  height: 150px;
 }
 .rsvp-attendees-field[readonly] {
   cursor: default;
+  padding: 42px 45px 18px;
   text-align: center;
-  font-family: 'Canva Sans', 'Avenir Next', Arial, sans-serif;
-  font-size: 42px;
-  font-weight: 600;
-  color: var(--olive);
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+  font-size: 52px;
+  font-weight: 400;
+  color: #4d5725;
   font-variant-numeric: tabular-nums;
 }
 .rsvp-attendees-field[readonly]:focus {
@@ -472,13 +473,27 @@ select.rsvp-field option { color: #4a2917; }
   box-shadow: none;
 }
 .rsvp-names-field {
-  top: 768px;
-  height: 217px;
-  padding-top: 40px;
+  top: 771px;
+  height: 219px;
+  padding: 60px 45px 24px;
 }
 .rsvp-song-field {
-  top: 1103px;
-  height: 144px;
+  top: 1073px;
+  height: 149px;
+  padding: 50px 45px 18px;
+}
+.rsvp-page-canvas--arabic .rsvp-attendees-field {
+  top: 544px;
+  left: 140px;
+  height: 149px;
+}
+.rsvp-page-canvas--arabic .rsvp-names-field {
+  top: 777px;
+  height: 219px;
+}
+.rsvp-page-canvas--arabic .rsvp-song-field {
+  top: 1079px;
+  height: 149px;
 }
 .rsvp-submit-position {
   z-index: 3;
