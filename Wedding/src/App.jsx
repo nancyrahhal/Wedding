@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
 const asset = (name) => `/assets/${name}`
+const toArabicDigits = (value) => String(value).replace(/\d/g, (digit) => '٠١٢٣٤٥٦٧٨٩'[digit])
 const REFERENCE_WIDTH = 1080
 const REFERENCE_HEIGHT = 1920
 const MAX_CANVAS_SCALE = 1
 const MAX_CANVAS_DISPLAY_WIDTH = 480
 const HORIZONTAL_PAGE_PADDING = 0
-const WEDDING_TIME = new Date('2026-08-29T21:00:00+03:00').getTime()
+const WEDDING_TIME = new Date('2026-09-12T19:30:00+03:00').getTime()
 const DESIGN_LAYERS = {
   envelopeBack: 1,
   photo: 2,
@@ -305,7 +306,7 @@ function App() {
 
   const isCanvasView = view === 'details' || view === 'invitation'
   const countdownUnits = invitationLanguage === 'arabic'
-    ? [['أيام', countdown.days], ['ساعات', countdown.hours], ['دقائق', countdown.minutes], ['ثوانٍ', countdown.seconds]]
+    ? [['يوم', countdown.days], ['ساعة', countdown.hours], ['دقيقة', countdown.minutes], ['ثانية', countdown.seconds]]
     : [['days', countdown.days], ['hours', countdown.hours], ['minutes', countdown.minutes], ['seconds', countdown.seconds]]
 
   return (
@@ -628,31 +629,61 @@ function App() {
             >
               <img
                 className="gift-page-artwork"
-                src={asset(`last-page-${invitationLanguage}-optimized.webp`)}
+                src={asset(`venue-slide-background-${invitationLanguage}.webp`)}
                 alt={invitationLanguage === 'arabic'
-                  ? 'حتى نلتقي على موعد العمر — رسالة من زهراء وإبراهيم'
-                  : 'Until we say I do — a note from Ibrahim and Zahraa'}
+                  ? 'الوقت المتبقي لفرحة العمر — السبت، 12 أيلول 2026'
+                  : 'Until we say “I do” — Saturday, 12 September 2026'}
                 loading="lazy"
                 decoding="async"
               />
 
               <div
                 className={`wedding-countdown${invitationLanguage === 'arabic' ? ' is-arabic' : ''}`}
-                aria-label="Countdown to 29 August 2026 at 9:00 PM"
+                aria-label="Countdown to 12 September 2026 at 7:30 PM"
                 dir={invitationLanguage === 'arabic' ? 'rtl' : 'ltr'}
               >
-                <p className="wedding-countdown__date">
-                  {invitationLanguage === 'arabic' ? '٢٩ أغسطس ٢٠٢٦ · ٩:٠٠ مساءً' : '29 AUGUST 2026 · 9:00 PM'}
-                </p>
                 <div className="wedding-countdown__units">
                   {countdownUnits.map(([label, value], index) => (
                     <div className="wedding-countdown__unit" key={label}>
                       <span className="wedding-countdown__number">
-                        {index === 0 ? value : String(value).padStart(2, '0')}
+                        {invitationLanguage === 'arabic'
+                          ? toArabicDigits(index === 0 ? value : String(value).padStart(2, '0'))
+                          : (index === 0 ? value : String(value).padStart(2, '0'))}
                       </span>
                       <span className="wedding-countdown__label">{label}</span>
                     </div>
                   ))}
+                </div>
+              </div>
+
+              <img
+                className="venue-photo"
+                src={asset('venue-photo.webp')}
+                alt="Pleine Nature wedding venue illuminated with fireworks"
+                loading="lazy"
+                decoding="async"
+              />
+
+              <a
+                className="venue-location-button"
+                href="https://www.google.com/maps/search/?api=1&query=Pleine%20Nature%20Mar%20Roukoz%20Dekwaneh"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={invitationLanguage === 'arabic'
+                  ? 'فتح موقع Pleine Nature على خرائط Google'
+                  : 'Open Pleine Nature location in Google Maps'}
+              >
+                <img
+                  src={asset(`location-button-${invitationLanguage}.webp`)}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+
+              <div className="venue-logo-position">
+                <div className="design-animation-layer">
+                  <img src={asset('wedding-logo-optimized.png')} alt="Ibrahim and Zahraa monogram" />
                 </div>
               </div>
             </div>
