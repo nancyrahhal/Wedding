@@ -865,7 +865,10 @@ select.rsvp-field option { color: #4a2917; }
   text-align: left;
 }
 .gift-modal__contact-list span {
+  font-family: Arial, sans-serif;
+  font-size: 34px;
   font-variant-numeric: tabular-nums;
+  letter-spacing: .6px;
   white-space: nowrap;
 }
 .gift-modal__accounts {
@@ -890,10 +893,11 @@ select.rsvp-field option { color: #4a2917; }
 }
 .gift-modal__account-code {
   overflow-wrap: anywhere;
-  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-  font-size: 33px !important;
+  font-family: Arial, sans-serif;
+  font-size: 29px !important;
   font-variant-numeric: tabular-nums;
   font-weight: 600;
+  letter-spacing: .7px;
 }
 .welcome-line {
   position: absolute;
