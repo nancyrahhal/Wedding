@@ -82,6 +82,8 @@ function App() {
   const [canvasScale, setCanvasScale] = useState(getCanvasScale)
   const [rsvpStatus, setRsvpStatus] = useState('idle')
   const [isLovePhotoVisible, setIsLovePhotoVisible] = useState(false)
+  const [isVenuePhotoVisible, setIsVenuePhotoVisible] = useState(false)
+  const [giftModal, setGiftModal] = useState(null)
   const [countdown, setCountdown] = useState(getCountdown)
   const audioRef = useRef(null)
   const resumeMusicOnReturnRef = useRef(false)
@@ -89,6 +91,7 @@ function App() {
   const pageTwoRef = useRef(null)
   const pageThreeRef = useRef(null)
   const lovePhotoRef = useRef(null)
+  const venuePhotoRef = useRef(null)
   const pageTwoAssetsReadyRef = useRef(Promise.resolve())
   const pageThreeAssetsReadyRef = useRef(Promise.resolve())
 
@@ -104,6 +107,17 @@ function App() {
     const timer = window.setInterval(updateCountdown, 1000)
     return () => window.clearInterval(timer)
   }, [])
+
+  useEffect(() => {
+    if (!giftModal) return undefined
+
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setGiftModal(null)
+    }
+
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [giftModal])
 
   useEffect(() => {
     const pauseBackgroundMusic = () => {
@@ -158,6 +172,22 @@ function App() {
     })
 
     observer.observe(lovePhotoRef.current)
+    return () => observer.disconnect()
+  }, [view])
+
+  useEffect(() => {
+    if (view !== 'invitation' || !venuePhotoRef.current) return undefined
+
+    setIsVenuePhotoVisible(false)
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      setIsVenuePhotoVisible(true)
+      observer.disconnect()
+    }, {
+      threshold: .42,
+    })
+
+    observer.observe(venuePhotoRef.current)
     return () => observer.disconnect()
   }, [view])
 
@@ -617,6 +647,7 @@ function App() {
           </div>
 
           <div
+            ref={venuePhotoRef}
             className="canvas-viewport gift-page-viewport"
             style={{
               width: REFERENCE_WIDTH * canvasScale,
@@ -657,7 +688,7 @@ function App() {
               </div>
 
               <img
-                className="venue-photo"
+                className={`venue-photo${isVenuePhotoVisible ? ' is-visible' : ''}`}
                 src={asset('venue-photo.webp')}
                 alt="Pleine Nature wedding venue illuminated with fireworks"
                 loading="lazy"
@@ -686,6 +717,136 @@ function App() {
                   <img src={asset('wedding-logo-optimized.png')} alt="Ibrahim and Zahraa monogram" />
                 </div>
               </div>
+            </div>
+
+            <button
+              className={`music-toggle music-toggle--page${isMuted ? ' is-muted' : ''}`}
+              type="button"
+              onClick={toggleMusic}
+              aria-label={isMuted ? 'Unmute music' : 'Mute music'}
+              aria-pressed={isMuted}
+            >
+              <img src={asset('music-icon-optimized.png')} alt="" aria-hidden="true" />
+              {isMuted && <span className="music-toggle__slash" aria-hidden="true" />}
+            </button>
+          </div>
+
+          <div
+            className="canvas-viewport gift-options-viewport"
+            style={{
+              width: REFERENCE_WIDTH * canvasScale,
+              height: REFERENCE_HEIGHT * canvasScale,
+            }}
+          >
+            <div
+              className="invitation-canvas gift-options-canvas"
+              style={{ transform: `scale(${canvasScale})` }}
+            >
+              <img
+                className="gift-options-background"
+                src={asset(`gift-slide-background-${invitationLanguage}.webp`)}
+                alt={invitationLanguage === 'arabic'
+                  ? 'خيارات هدية الزفاف'
+                  : 'Wedding gift options'}
+                loading="lazy"
+                decoding="async"
+              />
+
+              <button
+                className="gift-option-button gift-option-button--whish"
+                type="button"
+                onClick={() => setGiftModal('whish')}
+                aria-label={invitationLanguage === 'arabic'
+                  ? 'عرض تفاصيل Whish Money'
+                  : 'View Whish Money details'}
+              >
+                <img
+                  src={asset(`whish-button-${invitationLanguage}.webp`)}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
+
+              <button
+                className="gift-option-button gift-option-button--bank"
+                type="button"
+                onClick={() => setGiftModal('bank')}
+                aria-label={invitationLanguage === 'arabic'
+                  ? 'عرض التفاصيل المصرفية'
+                  : 'View bank details'}
+              >
+                <img
+                  src={asset(`bank-button-${invitationLanguage}.webp`)}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
+
+              {giftModal && (
+                <div
+                  className="gift-modal-backdrop"
+                  onMouseDown={(event) => {
+                    if (event.target === event.currentTarget) setGiftModal(null)
+                  }}
+                >
+                  <section
+                    className={`gift-modal gift-modal--${giftModal}`}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="gift-modal-title"
+                    dir="ltr"
+                  >
+                    <button
+                      className="gift-modal__close"
+                      type="button"
+                      onClick={() => setGiftModal(null)}
+                      aria-label="Close gift details"
+                      autoFocus
+                    >
+                      ×
+                    </button>
+
+                    {giftModal === 'whish' ? (
+                      <>
+                        <img
+                          className="gift-modal__whish-icon"
+                          src={asset('whish-icon.webp')}
+                          alt="Whish Money"
+                        />
+                        <h2 id="gift-modal-title">Whish Money</h2>
+                        <div className="gift-modal__contact-list">
+                          <p><strong>Ibrahim Komati</strong><span>70/883090</span></p>
+                          <p><strong>Zahraa Alannan</strong><span>78/812322</span></p>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <h2 id="gift-modal-title">Bank Details</h2>
+                        <div className="gift-modal__accounts">
+                          <section>
+                            <h3>AED account</h3>
+                            <p>IBRAHIM EL KOMATY</p>
+                            <p>Wio Bank PJSC</p>
+                            <p>Etihad Airways Centre 5th Floor,<br />Abu Dhabi, UAE</p>
+                            <p className="gift-modal__account-code">AE870860000006415853208</p>
+                            <p className="gift-modal__account-code">WIOBAEADXXX</p>
+                          </section>
+                          <section>
+                            <h3>USD account</h3>
+                            <p>IBRAHIM EL KOMATY</p>
+                            <p>Wio Bank PJSC</p>
+                            <p>Etihad Airways Centre 5th Floor,<br />Abu Dhabi, UAE</p>
+                            <p className="gift-modal__account-code">AE160860000006574619624</p>
+                            <p className="gift-modal__account-code">WIOBAEADXXX</p>
+                          </section>
+                        </div>
+                      </>
+                    )}
+                  </section>
+                </div>
+              )}
             </div>
 
             <button
