@@ -159,6 +159,7 @@
 .details-page-viewport,
 .love-story-viewport,
 .gift-page-viewport,
+.gift-options-viewport,
 .rsvp-page-viewport {
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -666,6 +667,9 @@ select.rsvp-field option { color: #4a2917; }
 .wedding-countdown.is-arabic .wedding-countdown__label {
   font-size: 28px;
 }
+.wedding-countdown.is-arabic .wedding-countdown__units {
+  direction: rtl;
+}
 .venue-photo,
 .venue-location-button,
 .venue-logo-position {
@@ -678,6 +682,14 @@ select.rsvp-field option { color: #4a2917; }
   width: 1044px;
   height: 743px;
   object-fit: cover;
+  opacity: 0;
+  clip-path: inset(0 50% 0 50%);
+  transform: translate3d(0, 28px, 0) scale(1.035);
+  filter: blur(3px) saturate(.88);
+  will-change: clip-path, transform, opacity, filter;
+}
+.venue-photo.is-visible {
+  animation: venue-photo-reveal 2.1s cubic-bezier(.2,.72,.2,1) both;
 }
 .venue-location-button {
   z-index: 3;
@@ -705,6 +717,183 @@ select.rsvp-field option { color: #4a2917; }
   top: 1664px;
   left: 445px;
   width: 190px;
+}
+.gift-options-viewport {
+  min-height: 0;
+  background: #dfe2e1;
+}
+.gift-options-canvas {
+  overflow: hidden;
+  background: #dfe2e1;
+}
+.gift-options-background,
+.gift-option-button {
+  position: absolute;
+}
+.gift-options-background {
+  z-index: 0;
+  inset: 0;
+  display: block;
+  width: 1080px;
+  height: 1920px;
+  object-fit: cover;
+}
+.gift-option-button {
+  z-index: 2;
+  left: 144px;
+  display: block;
+  width: 792px;
+  height: 327px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 28px;
+  background: transparent;
+  cursor: pointer;
+  transition: transform .2s ease, filter .2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.gift-option-button--whish {
+  top: 475px;
+}
+.gift-option-button--bank {
+  top: 875px;
+}
+.gift-option-button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.gift-option-button:hover {
+  filter: brightness(1.015);
+  transform: translateY(-4px);
+}
+.gift-option-button:active {
+  transform: scale(.985);
+}
+.gift-option-button:focus-visible {
+  outline: 3px solid rgba(77, 87, 37, .5);
+  outline-offset: 7px;
+}
+.gift-modal-backdrop {
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px;
+  background: rgba(38, 43, 29, .28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.gift-modal {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  max-height: 1740px;
+  padding: 82px 68px 72px;
+  overflow: auto;
+  border: 2px solid rgba(77, 87, 37, .2);
+  border-radius: 42px;
+  color: #4d5725;
+  background: rgba(255, 252, 232, .96);
+  box-shadow: 0 30px 80px rgba(37, 43, 27, .28);
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+  text-align: center;
+}
+.gift-modal--whish {
+  max-width: 760px;
+}
+.gift-modal__close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  display: grid;
+  width: 58px;
+  height: 58px;
+  padding: 0 0 7px;
+  place-items: center;
+  border: 1px solid rgba(77, 87, 37, .24);
+  border-radius: 50%;
+  color: #4d5725;
+  background: rgba(255, 255, 255, .52);
+  font-family: Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+}
+.gift-modal__close:hover {
+  background: rgba(255, 255, 255, .88);
+}
+.gift-modal__close:focus-visible {
+  outline: 3px solid rgba(77, 87, 37, .48);
+  outline-offset: 5px;
+}
+.gift-modal h2 {
+  margin: 20px 0 48px;
+  font-size: 62px;
+  font-weight: 600;
+  line-height: 1;
+}
+.gift-modal__whish-icon {
+  display: block;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 34px;
+  border-radius: 24px;
+}
+.gift-modal__contact-list {
+  display: grid;
+  gap: 28px;
+}
+.gift-modal__contact-list p {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 30px;
+  align-items: baseline;
+  margin: 0;
+  padding: 26px 30px;
+  border-radius: 20px;
+  background: rgba(77, 87, 37, .07);
+  font-size: 40px;
+  line-height: 1.15;
+}
+.gift-modal__contact-list strong {
+  font-weight: 600;
+  text-align: left;
+}
+.gift-modal__contact-list span {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.gift-modal__accounts {
+  display: grid;
+  gap: 34px;
+}
+.gift-modal__accounts > section {
+  padding: 34px 42px;
+  border: 1px solid rgba(77, 87, 37, .18);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, .42);
+}
+.gift-modal__accounts h3 {
+  margin: 0 0 24px;
+  font-size: 43px;
+  font-weight: 600;
+}
+.gift-modal__accounts p {
+  margin: 8px 0;
+  font-size: 31px;
+  line-height: 1.2;
+}
+.gift-modal__account-code {
+  overflow-wrap: anywhere;
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+  font-size: 33px !important;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
 }
 .welcome-line {
   position: absolute;
@@ -917,6 +1106,26 @@ select.rsvp-field option { color: #4a2917; }
   100% {
     opacity: 1;
     clip-path: inset(0 0 0 0 round 0);
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0) saturate(1);
+  }
+}
+@keyframes venue-photo-reveal {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 50% 0 50%);
+    transform: translate3d(0, 28px, 0) scale(1.035);
+    filter: blur(3px) saturate(.88);
+  }
+  58% { opacity: 1; }
+  80% {
+    clip-path: inset(0 0 0 0);
+    transform: translate3d(0, -4px, 0) scale(1.006);
+    filter: blur(0) saturate(1.02);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
     transform: translate3d(0, 0, 0) scale(1);
     filter: blur(0) saturate(1);
   }
