@@ -645,7 +645,7 @@ function App() {
               {isMuted && <span className="music-toggle__slash" aria-hidden="true" />}
             </button>
           </div>
-{/* 
+
           <div
             ref={venuePhotoRef}
             className="canvas-viewport gift-page-viewport"
@@ -729,9 +729,9 @@ function App() {
               <img src={asset('music-icon-optimized.png')} alt="" aria-hidden="true" />
               {isMuted && <span className="music-toggle__slash" aria-hidden="true" />}
             </button>
-          </div> */}
+          </div>
 
-          <div
+          {/* <div
             className="canvas-viewport gift-options-viewport"
             style={{
               width: REFERENCE_WIDTH * canvasScale,
@@ -859,7 +859,7 @@ function App() {
               <img src={asset('music-icon-optimized.png')} alt="" aria-hidden="true" />
               {isMuted && <span className="music-toggle__slash" aria-hidden="true" />}
             </button>
-          </div>
+          </div> */}
 
           <div
             className="canvas-viewport rsvp-page-viewport"
@@ -891,9 +891,9 @@ function App() {
                   className="rsvp-field rsvp-attendees-field"
                   type="text"
                   name="attendees"
-                  value="2"
+                  value="4"
                   readOnly
-                  aria-label={invitationLanguage === 'arabic' ? 'عدد الحضور: 2' : 'Number of attendees: 2'}
+                  aria-label={invitationLanguage === 'arabic' ? 'عدد الحضور: 4' : 'Number of attendees: 4'}
                 />
 
                 <textarea
@@ -902,8 +902,8 @@ function App() {
                   required
                   placeholder={
                     invitationLanguage === 'arabic'
-                      ? '(مثال: إبراهيم قماطي\nزهراء العنان\nيمكنك اضافة اسمين مدعوين.)'
-                      : '(e.g. Ibrahim Komati\nZahraa Alannan\nup to 2 invited guests.)'
+                      ? '(مثال: إبراهيم قماطي\nزهراء العنان  \nيمكنك اضافة أربعة أسماء)'
+                      : '(e.g. Ibrahim Komati\nZahraa Alannan\nup to 4 invited guests.)'
                   }
                   aria-label={invitationLanguage === 'arabic' ? 'الأسماء الكاملة لجميع الحاضرين' : 'Full names of all attendees'}
                 />
