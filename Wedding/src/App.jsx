@@ -730,7 +730,7 @@ function App() {
               {isMuted && <span className="music-toggle__slash" aria-hidden="true" />}
             </button>
           </div>
-
+{/* 
           <div
             className="canvas-viewport gift-options-viewport"
             style={{
@@ -859,7 +859,7 @@ function App() {
               <img src={asset('music-icon-optimized.png')} alt="" aria-hidden="true" />
               {isMuted && <span className="music-toggle__slash" aria-hidden="true" />}
             </button>
-          </div>
+          </div> */}
 
           <div
             className="canvas-viewport rsvp-page-viewport"
